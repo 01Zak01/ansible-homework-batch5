@@ -1,0 +1,64 @@
+- hosts: 167.71.173.252
+  tasks: 
+  - name: install packages
+    apt:
+      name: 
+        - apache2
+        - git
+        - tree
+      state: present
+
+  - name: Start service httpd if running
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+
+  - name: create group kaizen
+    group:
+      name: kaizen
+      state: present
+
+  - name: create devops
+    group:
+      name: devops
+      state: present
+
+  - name: create group qa
+    group:
+      name: qa
+      state: present
+
+  - name: create user
+    user:
+      name: zakir
+      state: present
+
+  - name: add user to group
+    user:
+      name: zakir
+      groups: kaizen
+      append: yes
+
+  - name: add user to group
+    user:
+      name: zakir
+      groups: qa
+      append: yes
+
+  - name: create user
+    user:
+      name: tester
+      state: present
+
+  - name: add user to group
+    user:
+      name: tester
+      groups: qa
+      append: yes
+
+  - name: copy folder to remote vm
+    copy: 
+      src: /root/ansible-homework-batch5/Homework1
+      dest: /root/
+   
