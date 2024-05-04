@@ -43,7 +43,9 @@
         - restart apache
 
     - name: Copy files out of folder
-      shell: mv /var/www/html/wordpress/* /var/www/html/
+      copy: 
+        src: mv /var/www/html/wordpress/*
+        dest: /var/www/html/
 
     - name: chown
       file:
