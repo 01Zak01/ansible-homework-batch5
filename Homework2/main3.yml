@@ -37,14 +37,14 @@
     - name: unzip wordpress
       unarchive:
         src: /tmp/latest.tar.gz
-        dest: /var/www/html/
+        dest: /tmp
         remote_src: yes
       notify:
         - restart apache
 
     - name: Copy files out of folder
       copy: 
-        src: mv /var/www/html/wordpress/.
+        src: /tmp/wordpress/.
         dest: /var/www/html/
         remote_src: yes
 
