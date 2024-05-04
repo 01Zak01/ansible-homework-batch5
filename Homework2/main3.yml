@@ -46,6 +46,7 @@
       copy: 
         src: mv /var/www/html/wordpress/*
         dest: /var/www/html/
+        remote_src: yes
 
     - name: chown
       file:
