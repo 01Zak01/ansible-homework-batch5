@@ -27,8 +27,8 @@
           - mysql
           - mariadb
           - mariadb-server
-          - php74
-          - php-mysql
+          - php
+          - php-mysqli
 
     - name: install wordpress
       get_url:
@@ -38,14 +38,17 @@
     - name: unzip wordpress
       unarchive:
         src: /tmp/latest.tar.gz
-        dest: /var/www/html
+        dest: /var/www/html/
         remote_src: yes
       notify:
         - restart apache
 
+    - name: move files out of folder
+      shell: mv /var/www/html/wordpress/* /var/www/html/
+
     - name: chown
       file:
-        path: /var/www/html
+        path: /var/www/html/
         owner: apache
         group: apache
         recurse: yes
