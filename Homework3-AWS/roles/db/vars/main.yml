@@ -1,0 +1,3 @@
+db_name: zakdata
+db_user: ansible
+db_password: new_password
